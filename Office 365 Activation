@@ -1,10 +1,10 @@
-Office 365 Etkinleştirme – CMD Yöntemi
-İlk olarak CMD’yi yönetici olarak çalıştırın.
+Office 365 Activation – CMD Method
+First, run CMD as administrator.
 cd /d %ProgramFiles%\Microsoft Office\Office16
 cd /d %ProgramFiles(x86)%\Microsoft Office\Office16
-Daha sonrasında ise aşağıdaki kodu da CMD’ye yapıştırın.
+Then paste the code below into CMD.
 for /f %x in ('dir /b ..\root\Licenses16\proplusvl_kms*.xrm-ms') do cscript ospp.vbs /inslic:"..\root\Licenses16\%x"
-Bu işlemler bittikten sonra da;
+After these processes are completed;
 cscript ospp.vbs /inpkey:XQNVK-8JYDB-WJ9W3-YJ8YR-WFG99
 cscript ospp.vbs /unpkey:BTDRB >nul
 cscript ospp.vbs /unpkey:KHGM9 >nul
@@ -12,4 +12,4 @@ cscript ospp.vbs /unpkey:CPQVG >nul
 cscript ospp.vbs /sethst:e8.us.to
 cscript ospp.vbs /setprt:1688
 cscript ospp.vbs /act
- ve bu kodlardan sonra office uygulamaniz sorunsuz calisacak..
+And after these codes, your office application will run smoothly.
