@@ -1,0 +1,52 @@
+Steghide
+
+Thursday, 30 November 2023
+12:51
+
+Steganografi Sanatı
+Veriyi resim veya ses dosyası gibi dosyaların içine gizlemek denilince akla gelen bilimin, sanatın adı steganografidir.
+Çoğunlukla veriler resim dosyalarının içine gizlenir bunun için hali hazırda bulunan uygulamalar vardır, bu uygulamalar arasında veriyi resmin içine gizleyip ayrıca şifrelemek de mümkündür. Resim dosyalarına veri gizlemek günümüzde en popüler olan gizleme yöntemidir. Sebebi ise;
+
+* Bir resim dosyasına gizlenen veriyi çıplak gözle görmemiz mümkün değildir.
+Peki gizlediğimiz veri resim dosyasının neresine gizleniyor?
+
+Fotoğrafını çektiğiniz renkli bir resim düşünün genelde bu resimler yüksek çözünürlüklü olduklarından 24 bitlik resimlerdir.
+Yani her piksel 24 bit'tir ve 16 milyon değişik renk sunmaktadır. Resmin 8,16,24,32 bit olması resmin renk derinliğini belirtir.
+Aşağıda renk derinliklerinin her bite göre ne kadar renk olduğu belirtilmiştir, bu renkler kırmızı, yeşil ve mavidir.
+8 bit  = 256 renk
+16 bit = 65.536 renk
+24 bit = 16.777.215 renk
+32 bit = 4,294,967,296 renk
+
+bit'ler bilgisayar dilinde 0 ve 1'leri temsil eder. (00010001)
+00010001 = 1 byte (8 bit 1 byte eder.)
+
+Çekilen resmin her 1 byte'ının son 2 bitinin değiştirilmesi resim için fark edilemeyecek derecededir. Bu sebepten dolayı resmin son 2 bitine gizli veriler saklanmaktadır.
+
+Avantajları
+Bu sanatı işimize yarayacak şekilde kullanmamız mümkündür.
+Örneğin bilgisayarımızın çalınma riskine karşılık veya dışarıdan bir saldırı sonucu dosyalarımıza kötü niyetli kişilerin ulaştığını varsayarsak ve bilgisayarımız üzerinde önemli verilerimizi tutuyorsak (parola, kredi kartı vb. önemli bilgiler) kötü niyetli kişiler bu bilgileri kolaylıkla okuyabilir, steganografi sanatı ile önem arz edecek verilerimizi belli resimlerin içine gizleyip önemli verilerimizin gizliliğini sağlayabiliriz, yalnız verilerimizi gizlediğimiz resmin boyutu artacağından dolayı kötü niyetli kişi bu işlerde uzmanlaşmışsa ve resmin pixeli düşük, boyutu yüksekse şüphe uyandırması muhtemeldir.
+
+Şimdi uygulamalı olarak bir resim dosyasının içerisine gizli olarak gördüğümüz bir txt belgesini gizleyelim.
+Bunun için Kali Linux sisteminde steghide uygulamasını kullanacağız.
+Kali Linux sistemimizde eğer Steghide uygulamamız yüklü değilse apt-get install steghide diyerek yüklemeyi yapıyoruz.
+
+Uygulamayı yükledikten sonra terminalden steghide yazarak parametreleri ile ilgili açıklamaları görebilirsiniz.
+
+Steghide embed –cf foto1.jpg –ef text1.txt yazarak text1.txt adlı dosyamı foto1.jpg dosyamın içine gizledim,
+
+Gizleme esnasında dosyanın içindeki gizli veriyi bir başkasının okumasına karşı önlem olarak bir şifre belirleniyor ve gizleme işlemi tamamlanıyor.
+
+cf – cover file    : İçerisine gizleyeceğimiz dosya
+ef – embed file    : Gizlemek istediğimiz dosya
+
+Steghide info komutunu yazarak jpg dosyasının içindeki dosyaları inceleyelim.
+
+Resmin içeriğindeki gizli veriyi göstermek için soruya 'y' diyerek devam ettiğimde bizden şifre istiyor bu şifre, veriyi resme gizlerken oluşturduğumuz şifredir.
+
+Görüldüğü gibi içine text1.txt diye bir veri gizlemişiz.
+Şimdi bu veriyi çıkartalım.
+
+Steghide extract –sf komutu ile resme gizlemiş olduğumuz dosyayı gizlerken oluşturduğumuz şifre ile çıkartıyoruz.
+
+cat komutu ile çıkarttığımız gizli verimizi okuduğumuzda bir txt belgesi olduğunu görmüş olduk.
