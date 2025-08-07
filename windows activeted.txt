@@ -1,0 +1,9 @@
+open powershell administrator
+write down this
+irm https://get.activated.win | iex
+after that give the number;
+6
+enter
+1
+enter
+
